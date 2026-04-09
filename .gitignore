@@ -22,3 +22,7 @@ node_modules/
 # Логи и временные файлы
 *.log
 *.tmp
+
+app.db
+app.db-shm
+app.db-wal
