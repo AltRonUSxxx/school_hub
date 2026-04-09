@@ -15,6 +15,8 @@ namespace schoolHub.Pages
         public string RegisterLogin { get; set; }
         [BindProperty]
         public string RegisterPassword { get; set; }
+        [BindProperty]
+        public string RegisterPasswordConfirm { get; set; }
 
 
         [BindProperty]
@@ -62,6 +64,7 @@ namespace schoolHub.Pages
 
             HttpContext.Session.SetInt32("UserId", loginExists.id);
             HttpContext.Session.SetString("UserName", loginExists.name);
+            HttpContext.Session.SetString("UserLogin", loginExists.login);
 
             return RedirectToPage();
         }
@@ -75,7 +78,7 @@ namespace schoolHub.Pages
         public IActionResult OnPostRegister()
         {
             LoadUser();
-            if(string.IsNullOrEmpty(RegisterName) || string.IsNullOrEmpty(RegisterLogin) || string.IsNullOrEmpty(RegisterPassword))
+            if(string.IsNullOrEmpty(RegisterName) || string.IsNullOrEmpty(RegisterLogin) || string.IsNullOrEmpty(RegisterPassword) || string.IsNullOrEmpty(RegisterPasswordConfirm))
             {
                 Message = "Fill all register's fields";
                 return Page();
@@ -88,6 +91,14 @@ namespace schoolHub.Pages
                 return Page();
             }
 
+            if(RegisterPasswordConfirm != RegisterPassword)
+            {
+                Message = "Passwords should was same";
+                return Page();
+            }
+
+
+
             var user = new User
             {
                 name = RegisterName,
@@ -99,6 +110,7 @@ namespace schoolHub.Pages
             _context.SaveChanges();
             HttpContext.Session.SetInt32("UserId", user.id);
             HttpContext.Session.SetString("UserName", user.name);
+            HttpContext.Session.SetString("UserLogin", user.login);
 
             return RedirectToPage();
         }
