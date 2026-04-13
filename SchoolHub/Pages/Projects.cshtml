@@ -1,0 +1,71 @@
+﻿@page
+@model SchoolHub.Pages.ProjectsModel
+@{
+	ViewData["Title"] = "Проекты";
+}
+
+<div class="container mt-5">
+	<h1 class="mb-4 text-center">Проекты</h1>
+	@if(!string.IsNullOrEmpty(Model.Message))
+	{
+		<div class="alert alert-warning">
+			@Model.Message
+		</div>
+	}
+	<div class="card shadow mb-4">
+		<div class="card-body">
+			<h3 class="mb-3">Добавить проект</h3>
+			
+			<form method="post" asp-page-handler="Add">
+				<div calss="mb-3">
+					<label class="form-label">Название проекта</label>
+					<input asp-for="Title" class="form-control" />
+				</div>
+				
+				<div calss="mb-3">
+					<label class="form-label">Описание</label>
+					<input asp-for="Description" class="form-control" rows="4" />
+				</div>
+
+				<div calss="mb-3">
+					<label class="form-label">Категория</label>
+					<input asp-for="Category" class="form-control" rows="4" />
+				</div>
+			
+				<button type="submit" class="btn btn-success">Добавить проект.</button>
+			</form>
+		</div>
+	</div>
+	<h3 class="mb-3">Список проектов:</h3>
+	@if(Model.Projects.Count == 0)
+	{
+		<div class="alert alert-info">
+				Пока проектов нет.
+		</div>
+
+	}
+	else
+	{
+		<div class="row">
+		@foreach(var project in Model.Projects)
+		{
+			<div class="col-mb-6 mb-4">
+				<div class="card h-100 shadow-sm">
+					<h4 class="card-title"@project.Title>Title</h4>
+					<p class="mb-2">
+						<span class="badge bg-primary">@project.Category</span>
+					</p>
+					<p class="card-text">@project.Description</p>
+
+					<div class="card-footer">
+						<small class="card-fppter">
+							Автор: @project.Author?.Name
+						</small>
+					</div>
+				</div>
+			</div>
+		}
+		</div>
+	}
+	
+</div>
