@@ -17,6 +17,14 @@ html {
   min-height: 100%;
 }
 
+.project {
+    transition: transform 0.1s;
+}
+
+.project:hover {
+    transform: scale(1.01);
+}
+
 body {
   margin-bottom: 60px;
 }

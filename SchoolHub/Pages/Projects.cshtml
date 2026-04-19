@@ -65,17 +65,14 @@
 		<div class="row">
 		@foreach(var project in Model.Projects)
 		{
-			<div class="col-mb-6 mb-4">
-				<div class="card mb-3 h-100 shadow-sm">
-					<h4 class="mb-3 card-title"@project.Title>@project.Title</h4>
-					<p class="mb-3">
-						<span class="badge bg-primary">@project.Category</span>
-					</p>
-					<p class="mb-3 card-text">@project.Description</p>
-
-					<div class="mb-3 card-footer">
-						Author: @project.Author?.Name
-					</div>
+				<div class="card shadow mb-4 project">
+					<div class="card-body ">
+						<h4 class="mb-3 card-title">@project.Title</h4>
+						<p class="mb-3">
+							<span class="badge bg-primary">@project.Category</span>
+							<br />
+							Author: @project.Author?.Name
+						</p>
 				</div>
 			</div>
 		}

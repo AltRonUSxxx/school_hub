@@ -24,6 +24,7 @@ namespace SchoolHub.Pages
             {
                 return RedirectToPage("/index");
             }
+            Console.WriteLine("\n\n\n\n\n\n" + userId.Value.ToString() + "\n\n\n\n\n\n");
 
             LoadMyProject(userId.Value);
             return Page();
@@ -62,6 +63,10 @@ namespace SchoolHub.Pages
             if (user != null)
             {
                 CurrentUserName = user.Name;
+            }
+            else
+            {
+                Console.WriteLine("\n\n\n\n\nUSER NULL ERROR\n\n\n\n\n");
             }
             Projects = _context.Projects
                 .Where(x => x.AuthorId == userId)

@@ -31,35 +31,24 @@
 		<div class="row">
 			@foreach(var project in Model.Projects)
 			{
-				<div class="col-md-6 mb-4">
-					<div class="card h-100 shadow-sm">
-						<div class="card-body">
-							<h4 class="card-title">
-								@project.Title
-							</h4>
-
-							<p class="mb-2">
-								<span class="badge bg-primary">
-									@project.Category
-								</span>
-							</p>
-
-							<p class="card-text">
-								@project.Description
-							</p>
-						</div>
-
-						<div class="catd-footer">
+				<div class="card shadow mb-4 h-100 project">
+					<div class="card-body ">
+						<h4 class="mb-3 card-title">@project.Title</h4>
+						<p class="mb-3">
+							@project.Description
+							<br />
+							<span class="badge bg-primary">@project.Category</span>
+							<br />
 							<small class="d-block text-muted mb-2">
 								Created at: @project.CreatedAt.ToString("dd.MM.yyyy HH:mm")
 							</small>
-
+							<br />
 							<form method="post" asp-page-handler="Delete" asp-route-itemid="@project.Id">
 								<button type="submit" class="btn btn-danger btn-sm">
 									Delete
 								</button>
 							</form>
-						</div>
+						</p>
 					</div>
 				</div>
 			}
