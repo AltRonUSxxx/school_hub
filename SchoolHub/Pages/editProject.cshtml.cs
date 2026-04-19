@@ -56,5 +56,43 @@ namespace SchoolHub.Pages
 
             return Page();
         }
+
+        public IActionResult OnPost()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            if(userId == null)
+            {
+                return RedirectToPage("/Index");
+            }
+
+            if(string.IsNullOrWhiteSpace(Title) || 
+                string.IsNullOrWhiteSpace(Description) ||
+                string.IsNullOrWhiteSpace(Category))
+            {
+                Message = "Fill all fields";
+                return Page();
+            }
+
+            var project = _context.Projects.FirstOrDefault(x => x.Id == Id);
+
+            if(project == null)
+            {
+                return RedirectToPage("/MyProjects");
+            }
+
+            if(project.AuthorId == userId.Value)
+            {
+                return RedirectToPage("/Projects");
+            }
+
+            project.Title = Title;
+            project.Description = Description;
+            project.Category = Category;
+
+            _context.SaveChanges();
+
+            return RedirectToPage("/MyProjects");
+        }
     }
 }
