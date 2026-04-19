@@ -1,7 +1,7 @@
 ﻿@page
 @model SchoolHub.Pages.ProjectsModel
 @{
-	ViewData["Title"] = "Проекты";
+	ViewData["Title"] = "Projects";
 }
 
 <div class="container mt-5">
@@ -20,22 +20,21 @@
 	}
 	<div class="card shadow mb-4">
 		<div class="card-body">
-			<h3 class="mb-3">Добавить проект</h3>
+			<h3 class="mb-3">Add project</h3>
 			
 			<form method="post" asp-page-handler="Add">
-				<div calss="mb-3">
-					<label class="form-label">Название проекта</label>
+				<div class="mb-3">
+					<label class="form-label">Project name</label>
 					<input asp-for="Title" class="form-control" />
 				</div>
 				
-				<div calss="mb-3">
-					<label class="form-label">Описание</label>
+				<div class="mb-3">
+					<label class="form-label">Description</label>
 					<input asp-for="Description" class="form-control" rows="4" />
 				</div>
 
-				<div calss="mb-3">
-					<label class="form-label">Категория</label>
-					<input asp-for="Category" class="form-control" rows="4" />
+				<div class="mb-3">
+					<label class="form-label">Category</label>
 					<select asp-for="Category" class="form-select">
 						<option value="">
 							Select category
@@ -49,15 +48,15 @@
 					</select>
 				</div>
 			
-				<button type="submit" class="btn btn-success">Добавить проект.</button>
+				<button type="submit" class="btn btn-success">Add project</button>
 			</form>
 		</div>
 	</div>
-	<h3 class="mb-3">Список проектов:</h3>
+	<h3 class="mb-3">Projects:</h3>
 	@if(Model.Projects.Count == 0)
 	{
 		<div class="alert alert-info">
-				Пока проектов нет.
+				Projects doesn't exists yet
 		</div>
 
 	}
@@ -68,16 +67,14 @@
 		{
 			<div class="col-mb-6 mb-4">
 				<div class="card mb-3 h-100 shadow-sm">
-					<h4 class="mb-4 card-title"@project.Title>@project.Title</h4>
-					<p class="mb-2">
+					<h4 class="mb-3 card-title"@project.Title>@project.Title</h4>
+					<p class="mb-3">
 						<span class="badge bg-primary">@project.Category</span>
 					</p>
-					<p class="card-text">@project.Description</p>
+					<p class="mb-3 card-text">@project.Description</p>
 
-					<div class="card-footer">
-						<small class="card-footer">
-							Автор: @project.Author?.Name
-						</small>
+					<div class="mb-3 card-footer">
+						Author: @project.Author?.Name
 					</div>
 				</div>
 			</div>

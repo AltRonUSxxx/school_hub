@@ -48,24 +48,24 @@ namespace SchoolHub.Pages
                 || string.IsNullOrEmpty(RegisterPassword)
                 || RegisterAge == null)
             {
-                Message = "Заполните все поля регистрации";
+                Message = "Fill all fields";
                 return Page();
             }
     
             if(RegisterAge <= 0) 
             {
-                Message = "Возраст должен быть больше 0.";
+                Message = "Age should more than 0";
                 return Page();
             }
 
             if (_context.Users.Any(u => u.Login == RegisterLogin))
             {
-                Message = "Пользователь с таким логином уже существует";
+                Message = "This username already taken";
                 return Page();
             }
             if (RegisterPassword != RegistrRepeatPassword || string.IsNullOrEmpty(RegistrRepeatPassword))
             {
-                Message = "Пароль не сходиться.";
+                Message = "Passwords doesn't equals";
                 return Page();
             }
             var user = new User
@@ -90,14 +90,14 @@ namespace SchoolHub.Pages
             LoadUser();
             if (string.IsNullOrEmpty(LoginLogin) || string.IsNullOrEmpty(LoginPassword)) 
             {
-                Message = "Введите логин и пароль.";
+                Message = "Enter login and password";
                 return Page();
             }
             var user = _context.Users.FirstOrDefault(u => u.Login == LoginLogin);
 
             if (user == null)
             {
-                Message = "Неверный логин или праоль.";
+                Message = "Uncorrect login or password";
                 return Page();
             }
             var res = _passeordHasher.VerifyHashedPassword(
@@ -109,7 +109,7 @@ namespace SchoolHub.Pages
 
             if(res == PasswordVerificationResult.Failed) 
             {
-                Message = "Не верный логин или пароль";
+                Message = "Uncorrect login or password";
                 return Page();
             }
 

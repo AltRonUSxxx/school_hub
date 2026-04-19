@@ -1,11 +1,11 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Главная";
+    ViewData["Title"] = "Main";
 }
 
 <div class="container mt-5">
-    <div class="row justity-content-center">
+    <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
             @if (!string.IsNullOrEmpty(Model.Message))
             {
@@ -17,20 +17,20 @@
             {
                 <div class="card shadow">
                     <div class="cardaccordion-body text-center">
-                        <h2 class="md3">Здраствуйте, @Model.CurrentUserName, @Model.CurrentUserLogin.</h2>
+                        <h2 class="md3">Welcome, @Model.CurrentUserName, @Model.CurrentUserLogin.</h2>
                         <p class="text-muted">
-                            Вы успешой вошли в аккаунт.
+                            Successful
                         </p>
 
                         <div class="d-flex justify-content-center gap-2">
-                            <a asp-page="/Projects" class="btn btn-primary">Все проекты</a>
+                            <a asp-page="/Projects" class="btn btn-primary">All projects</a>
 
-                            <a asp-page="/MyProjects" class="btn btn-primary">Мои проекты</a>
+                            <a asp-page="/MyProjects" class="btn btn-primary">My projects</a>
                         </div>
 
                         <form method="post" asp-page-handler="Logout">
                             <button type="submit" class="btn btn-danger">
-                                Выйти
+                                Log out
                             </button>
                         </form>
                     </div>
@@ -40,7 +40,7 @@
             {
                 <div class="card shadow">
                     <div class="card-body">
-                        <h2 class="text-center mb-4">Добро пожаловать</h2>
+                        <h2 class="text-center mb-4">Welcome</h2>
                         <ul class="nav nav-tabs mb-3" id="authTabs" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active"
@@ -49,7 +49,7 @@
                                         data-bs-target="#login"
                                         type="button"
                                         role="tab">
-                                    Вход
+                                    Sign in
                                 </button>
                             </li>
 
@@ -60,7 +60,7 @@
                                         data-bs-target="#register"
                                         type="button"
                                         role="tab">
-                                    Регистрация
+                                    Sign up
                                 </button>
                             </li>
                         </ul>
@@ -69,20 +69,20 @@
                             <div class="tab-pane fade show active" id="login" role="tabpanel">
                                 <form method="post" asp-page-handler="Login">
                                     <div class="mb-3">
-                                        <label class="form-label">Логин</label>
+                                        <label class="form-label">Login</label>
                                         <input asp-for="LoginLogin" class="form-control" />
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Пароль</label>
+                                        <label class="form-label">Password</label>
                                         
                                         <input asp-for="LoginPassword" type="password" class="form-control" id="PasswordVisibilityI" />
                                         <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('loginPassword', this)">
-                                            Показать
+                                            Show
                                         </button>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary w=100">
-                                        Войти
+                                        Sign in
                                     </button>
                                 </form>
                             </div>
@@ -90,29 +90,29 @@
                             <div class="tab-pane fade" id="register" role="tabpanel">
                                 <form method="post" asp-page-handler="Register">
                                     <div class="mb-3">
-                                        <label class="form-label">Имя</label>
+                                        <label class="form-label">Name</label>
                                         <input asp-for="RegisterName" class="form-control" />
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Логин</label>
+                                        <label class="form-label">Login</label>
                                         <input asp-for="RegisterLogin" class="form-control" />
                                     </div>
                                    
                                     <div class="mb-3">
-                                        <label class="form-label">Возраст</label>
+                                        <label class="form-label">Age</label>
                                         <input asp-for="RegisterAge" class="form-control" />
                                     </div>
                                    
                                     <div class="mb-3">
-                                        <label class="form-label">Пароль</label>
+                                        <label class="form-label">Password</label>
                                         <input asp-for="RegisterPassword" type="password" class="form-control" />
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Повторите пароль</label>
+                                        <label class="form-label">Repeat password</label>
                                         <input asp-for="RegistrRepeatPassword" type="password" class="form-control" />
                                     </div>
                                     <button type="submit" class="btn btn-primary w=100">
-                                        Зарегистрироваться
+                                        Sign up
                                     </button>
                                 </form>
                             </div>

@@ -54,7 +54,7 @@ namespace SchoolHub.Pages
                     string.IsNullOrEmpty(Description) ||
                     string.IsNullOrEmpty(Category)) 
             {
-                Message = "Заполните все поля.";
+                Message = "Fill all fields";
                 LoadProjects();
                 return Page();
             }
