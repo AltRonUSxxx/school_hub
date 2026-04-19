@@ -1,0 +1,39 @@
+﻿@page
+@model SchoolHub.Pages.projectDetailsModel
+@{
+	ViewData["Title"] = "Projects";
+}
+
+<div class="container mt-5">
+	@if(Model.ProjectItem != null)
+	{
+		<div class="shadow card">
+			<div class="card-body">
+				<h1 class="mb-3">@Model.ProjectItem.Title</h1>
+				<p class="mb-3">
+					<span class="badge bg-primary">
+						@Model.ProjectItem.Category
+					</span>
+				</p>
+				<p class="mb-4">@Model.ProjectItem.Description</p>
+				<hr />
+				<p class="mb-1">
+					<strong>Author:</strong> @Model.ProjectItem.Author?.Name
+				</p>
+
+				<p class="mb-3">
+					<strong>Created at:</strong> @Model.ProjectItem.CreatedAt.ToString("dd.MM.yyyy HH:mm")
+				</p>
+
+				<div class="d-flex gap-2">
+					<a asp-page="/Projects" class="btn btn-secondary">
+						All projects
+					</a>
+					<a asp-page="/MyProjects" class="btn btn-secondary">
+						My projects
+					</a>
+				</div>
+			</div>
+		</div>
+	}
+</div>
