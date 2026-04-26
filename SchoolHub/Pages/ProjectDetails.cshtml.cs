@@ -13,7 +13,7 @@ namespace SchoolHub.Pages
 
         public ProjectDetailsModel(IProjectService projectService) 
         {
-            projectService = _projectService;
+            _projectService = projectService;
         }
         public Project? ProjectItem {  get; set; }
         public IActionResult OnGet(int id)

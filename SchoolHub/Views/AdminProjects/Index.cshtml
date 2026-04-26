@@ -1,0 +1,76 @@
+﻿@model List<SchoolHub.Models.Project>
+@{
+	ViewData["Title"] = "MVC Админка проектов";
+}
+
+<div class="container mt-5">
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<div>
+				<h1 class="mb-1">MVC Админка проектов</h1>
+				<p class="text-muted mb-8">
+					Эта страница сделана через Controller и View, а не через RazorPage
+				</p>
+		</div>
+		<span class="badge bg-black-bark fs-6">
+			Всего пректов: @Model.Count
+		</span>
+	</div>
+	@if(Model.Count == 0)
+	{
+		<div class="alert alert-info">
+			Проектов пока нет.
+		</div>
+	}
+	else
+	{
+		<table class="table table-bordered table-hover align-middle">
+			<thead class="table-dark">
+				<tr>
+					<th>название</th>
+					<th>Категория</th>
+					<th>Статус</th>
+					<th>Автор</th>
+					<th>Дата</th>
+					<th style="width: 260px">Действия</th>
+				</tr>
+				<tbody>
+					@foreach(var project in Model)
+					{
+						<tr>
+							<td>@project.Title</td>
+							<td>@project.Category</td>
+							<td>@project.Status</td>
+							<td>@project.Author?.Name</td>
+							<td>@project.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+							<td>
+								<div class="d-flex flex-wrap gap-2">
+									<a asp-controller="AdminPrjects" action="Details" asp-route-id=@project.Id" class="btn btn-outline-primary btn small">
+										Подробнее
+									</a>
+								</div>
+
+							<div class="d-flex flex-wrap gap-2">
+								<a asp-controller="AdminPrjects" action="Edit" asp-route-id=@project.Id" class="btn btn-outline-warning btn small">
+									Редактировать
+								</a>
+							</div>
+
+								<div class="d-flex flex-wrap gap-2">
+									<a asp-controller="AdminPrjects" action="Delete" asp-route-id=@project.Id" class="btn btn-outline-danger btn small">
+										Удалить
+									</a>
+							</div>
+
+						</td>
+						</tr>
+						
+					}
+
+				</tbody>
+			</thead>
+
+		</table>
+		
+	}
+
+</div>

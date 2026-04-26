@@ -1,0 +1,33 @@
+﻿@model SchoolHub.Models.Project
+@{
+	ViewData["Title"] = "Удаление проекта";
+}
+
+<div class="container mt-5">
+	<div class="card shadow border-danger">
+		<div class="card-body">
+			<h1 class="mb-3 text-danger">Удаление проекта</h1>
+			
+			<div class="alert alert-warning">Вы точно хотите удалить этот проект?</div>
+			<h3> @Model.Title</h3>
+
+			<p class="mb-2">
+				<span class="badge bg-primary">@Model.Category</span>
+				<span class="badge bg-secondary">@Model.Status</span>
+			</p>
+			<p>@Model.Description</p>
+
+			<p class="text-muted">Автор: @Model.Author?.Name</p>
+
+			<form asp-controller="AdminProjects" asp-action="DeleteConfirmed" asp-route-id="@Model.Id" method="post">
+				@Html.AntiForgeryToken();
+
+				<div class="d-flex gap-2">
+					<button type="submit" class="btn btn-danger"> Да, удалить</button>
+	
+					<a asp-controller="AdminProjects" asp-action="Index" class="btn btn-secondary">Отмена</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
