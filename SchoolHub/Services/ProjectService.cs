@@ -34,7 +34,7 @@ namespace SchoolHub.Services
                 .Include(p => p.Author)
                 .FirstOrDefault(p => p.Id == id);
         }
-        public void AddProject(Project project) 
+        public void AddProject(Project project)
         {
             _context.Projects.Add(project);
             _context.SaveChanges();

@@ -12,7 +12,8 @@
             var path = context.Request.Path.Value?.ToLower();
             bool isProtectedPage = path.StartsWith("/projects")
                 || path.StartsWith("/myprojects")
-                || path.StartsWith("/editproject");
+                || path.StartsWith("/editproject")
+                || path.StartsWith("/adminprojects");
             bool isAuthenticated = context.Session.GetInt32("UserId") != null;
             if(isProtectedPage && !isAuthenticated) 
             {
