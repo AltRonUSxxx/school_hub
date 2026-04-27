@@ -42,6 +42,7 @@ namespace SchoolHub.Controllers
                 Category = project.Category,
                 Status = project.Status
             };
+            Console.WriteLine("\n\n\n\n\n\nTEEEEEST\n\n\n\n\n");
             return View(project);
         }
 
