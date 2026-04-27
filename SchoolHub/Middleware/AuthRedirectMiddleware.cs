@@ -10,6 +10,20 @@
         public async Task InvokeAsync(HttpContext context)
         {
             var path = context.Request.Path.Value?.ToLower();
+
+            if(path.StartsWith("/api"))
+            {
+                await _next(context);
+                return;
+            }
+
+            if(path.StartsWith("Swagger"))
+            {
+                await _next(context);
+                return;
+
+            }
+
             bool isProtectedPage = path.StartsWith("/projects")
                 || path.StartsWith("/myprojects")
                 || path.StartsWith("/editproject")
